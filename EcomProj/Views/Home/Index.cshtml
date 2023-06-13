@@ -1,0 +1,61 @@
+﻿@using EcomProj.Model
+@model IEnumerable<Product>
+
+
+    <style>
+        .none{
+            margin:auto;
+        }
+    </style>
+
+  <div class="container-fluid pb-5 ">
+  <div class="row">
+    <div class="col-12">
+      <img src="@Url.Content("~/images/default/ecomHome.jpg")" class="img-fluid" alt="Card image">
+    </div>
+  </div>
+</div>
+<div>
+
+    <h1>Popular Items</h1>
+<div class = "row p-10 pb-3 ">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-md-6 mx-3">
+            <div class="row p-2 bg-dark">
+                <div class="col-12 p-1" style="border:1px solid black; border-radius: 5px;">
+                    <div class="card">
+                        <img src="@product.Image" class="card-img-top rounded" height="200px" width="250px"/>
+                        <div class=" card-body">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-primary"><b>@product.Name</b></p>
+                                <p class="card-title text-info text-primary">@product.Quantity</p>
+
+                            </div>
+                            <div class="pl-1">
+                                <p>ListPrice: <strike><b>$@product.FixedPrice.ToString("0.00")</b></strike></p>
+                            </div>        
+                            <div class="pl-1">
+                                <p>Discount Price: <b>$@product.DiscountPrice.ToString("0.00")</b></p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div >
+                        <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId = "@product.Id">
+                        Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+</div>
+
+
+
+
+
