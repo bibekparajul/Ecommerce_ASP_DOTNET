@@ -9,6 +9,12 @@ namespace EcomProj.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         IShoppingCartRepository ShoppingCart { get; }
+        IUserModelRepository UserModel { get; }
+
+        IOrderDetailRepository OrderDetail { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+
+        void Save();
 
     }
 }

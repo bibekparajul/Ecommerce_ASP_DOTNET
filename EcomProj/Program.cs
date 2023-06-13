@@ -1,7 +1,11 @@
+using Ecom.Utils;
 using EcomProj.DataAccess.Data;
 using EcomProj.DataAccess.Repository;
 using EcomProj.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +16,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+builder.Services.Configure<StripeSet>(builder.Configuration.GetSection("Stripe"));  //stripe payment login
+
+
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();  //
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 
 
 var app = builder.Build();
@@ -29,11 +43,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
+
+app.UseAuthentication(); 
 
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

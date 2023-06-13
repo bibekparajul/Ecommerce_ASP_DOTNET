@@ -18,11 +18,19 @@ namespace EcomProj.DataAccess.Repository
         {
             _db = db;
             ShoppingCart = new ShoppingCartRepository(_db);
+            UserModel = new UserModelRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
+            OrderHeader = new OrderHeaderRepository(_db);
 
 
         }
 
         public IShoppingCartRepository ShoppingCart { get;private set; }
+        public IUserModelRepository UserModel { get; private set; }
+
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+
+        public IOrderDetailRepository OrderDetail { get; private set; }
 
         public void Save()
         {

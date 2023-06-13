@@ -22,5 +22,13 @@ namespace EcomProj.Model
         [Range(1, 100, ErrorMessage = "Please Enter a value between 1 and 100")]
 
         public int Count { get; set; }
+
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        [ValidateNever]
+        public UserModel UserModel { get; set; }
+
+        [NotMapped]
+        public double Price { get; set; }
     }
 }

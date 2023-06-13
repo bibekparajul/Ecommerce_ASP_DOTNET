@@ -2,14 +2,15 @@
 using EcomProj.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EcomProj.Controllers
+namespace EcomProj.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
         public CategoryController(ApplicationDbContext db)
         {
-            _db= db;
+            _db = db;
         }
 
         //just the index and return all category
@@ -43,12 +44,12 @@ namespace EcomProj.Controllers
         //get method
         public IActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return NotFound();
             }
             var category = _db.Categories.Find(id);
-            if(category == null)
+            if (category == null)
             {
                 return NotFound();
             }
@@ -92,7 +93,7 @@ namespace EcomProj.Controllers
         public IActionResult DeletePost(int? id)
         {
             var obj = _db.Categories.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }

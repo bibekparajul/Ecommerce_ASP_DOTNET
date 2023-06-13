@@ -2,8 +2,9 @@
 using EcomProj.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EcomProj.Controllers
+namespace EcomProj.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class SubCategoryController : Controller
     {
         private readonly ApplicationDbContext _db;

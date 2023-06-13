@@ -55,5 +55,20 @@ namespace EcomProj.DataAccess.Repository
             }
             return query.FirstOrDefault();
         }
+
+        public void Add(T entity)
+        {
+            dbSet.Add(entity);
+        }
+
+        public void Remove(T entity)
+        {
+            dbSet.Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<T> entity)
+        {
+            dbSet.RemoveRange(entity);
+        }
     }
 }

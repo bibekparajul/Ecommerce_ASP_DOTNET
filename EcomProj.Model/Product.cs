@@ -19,9 +19,9 @@ namespace EcomProj.Model
 
         public int Quantity { get; set; }
 
-        public decimal FixedPrice { get; set; }
+        public double FixedPrice { get; set; }
         
-         public decimal DiscountPrice { get; set; }
+         public double DiscountPrice { get; set; }
 
         public string? Image { get; set; }
 

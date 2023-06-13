@@ -12,5 +12,11 @@ namespace EcomProj.DataAccess.Repository.IRepository
         T GetFirstorDefault(Expression<Func<T, bool>> filter, string? includeProperties = null);
         //categorycontroller bata retrieve
         IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
+
+        void Remove(T entity);
+        void Add(T entity);
+        void RemoveRange(IEnumerable<T> entity);
+
+
     }
 }
