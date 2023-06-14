@@ -21,6 +21,8 @@ namespace EcomProj.DataAccess.Repository
             UserModel = new UserModelRepository(_db);
             OrderDetail = new OrderDetailRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
+            Product = new ProductRepository(_db);
+
 
 
         }
@@ -31,6 +33,8 @@ namespace EcomProj.DataAccess.Repository
         public IOrderHeaderRepository OrderHeader { get; private set; }
 
         public IOrderDetailRepository OrderDetail { get; private set; }
+
+        public IProductRepository Product { get; private set; }
 
         public void Save()
         {

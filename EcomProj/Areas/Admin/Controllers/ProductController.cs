@@ -1,4 +1,5 @@
 ﻿using EcomProj.DataAccess.Data;
+using EcomProj.DataAccess.Repository.IRepository;
 using EcomProj.Model;
 using EcomProj.Model.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -7,17 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EcomProj.Controllers
 {
+    [Area("Admin")]
     public class ProductController : Controller
     {
 
         private readonly ApplicationDbContext _db;
-
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProductController(ApplicationDbContext db, IWebHostEnvironment hostEnvironment)
+        public ProductController(ApplicationDbContext db, IWebHostEnvironment hostEnvironment,IUnitOfWork unitOfWork)
         {
             _db = db;
             _hostEnvironment = hostEnvironment;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -113,8 +116,13 @@ namespace EcomProj.Controllers
 
         public IActionResult GetAll()
         {
-            var productList = _db.Products;
+            //var productList = _db.Products;
+            //return Json(new { data = productList });
+
+            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,SubCategory");
             return Json(new { data = productList });
+
+
         }
         //delete
         [HttpDelete]                 //used to handle the http request

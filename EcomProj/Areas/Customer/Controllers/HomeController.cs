@@ -25,7 +25,7 @@ namespace EcomProj.Areas.Customer.Controllers
         public IActionResult Index()
         {
 
-            IEnumerable<Product> productList = _db.Products;
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,SubCategory");
             return View(productList);
 
         }
@@ -36,9 +36,10 @@ namespace EcomProj.Areas.Customer.Controllers
             {
                 Count = 1,
                 ProductId = productId,
-                Product = _db.Products.FirstOrDefault(u => u.Id == productId)
+                //Product = _db.Products.FirstOrDefault(u => u.Id == productId)
+               Product= _unitOfWork.Product.GetFirstorDefault(u => u.Id == productId, includeProperties: "Category,SubCategory")
 
-            };
+        };
             return View(cartObj);
         }
 
@@ -71,6 +72,31 @@ namespace EcomProj.Areas.Customer.Controllers
 
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        //search here
+
+
+        public ActionResult SearchFunc(string search)
+        {
+            IEnumerable<Product> fineList = _unitOfWork.Product.GetAll(includeProperties: "Category,SubCategory");
+
+            if (fineList == null)
+            {
+                return NotFound();
+            }
+
+            return View(fineList.Where(x => x.Name.Contains(search) || search == null).ToList());
+        }
+
+
+
+        //search ends here
+
+
+        public IActionResult About()
         {
             return View();
         }

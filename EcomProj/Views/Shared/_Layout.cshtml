@@ -23,8 +23,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-around">
+                    <ul class="navbar-nav flex-grow-1 justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -35,9 +35,17 @@
                         
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="SubCategory" asp-action="Index">SubCategory</a>
+                        </li>   
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                        </li>    
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
-                             <li class="nav-item">
-            <a class="nav-link" asp-area = "Customer" asp-controller="AddCart" asp-action="Index">
+                             <li class="nav-item justify-content-around">
+            <a class="nav-link align-content-end" asp-area = "Customer" asp-controller="AddCart" asp-action="Index">
                 <i class="bi bi-cart"></i>
             </a>
         </li>
@@ -55,8 +63,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container text-center">
+    <footer class="border-top footer text-muted fixed-bottom">
+        <div class="text-center">
            <b>&copy; 2023 - EcomProj</b>  
         </div>
     </footer>

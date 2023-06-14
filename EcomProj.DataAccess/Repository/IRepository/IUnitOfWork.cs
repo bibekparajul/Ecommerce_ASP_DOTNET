@@ -13,6 +13,7 @@ namespace EcomProj.DataAccess.Repository.IRepository
 
         IOrderDetailRepository OrderDetail { get; }
         IOrderHeaderRepository OrderHeader { get; }
+        IProductRepository Product { get; }
 
         void Save();
 
