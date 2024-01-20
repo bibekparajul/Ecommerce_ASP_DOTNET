@@ -6,16 +6,16 @@
 	<div class="container">
 		<div class="card shadow border-0">
 			
-			<div class="card-header bg-secondary bg-gradient text-light ml-0 py-4">
+			<div class="card-header bg-gradient text-light ml-0 py-4">
 				<div class="row px-4">
 					<div class="col-6">
-						<h5 class="pt-2 text-dark">
+						<h5 class="pt-2 text-primary">
 							Order Summary
 						</h5>
 					</div>
-				<div class="col-6 text-end">
+				@*<div class="col-6 text-end">
 					<a asp-action="Index" class="btn btn-outline-danger btn-sm">Back to Cart</a>
-				</div>
+				</div>*@
 				</div>
 			</div>
 			<div class="card-body">
@@ -110,7 +110,7 @@
 				<div class="row">
 					<div class="col-12 col-md-8 pt-2">
 						<p style="color:maroon; font-size:14px;">Estimate Arrival Date:
-							@DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()
+							@DateTime.Now.AddDays(2).ToShortDateString() - @DateTime.Now.AddDays(4).ToShortDateString()
 						</p>
 					</div>
 					<div class="col-12 col-md-4">

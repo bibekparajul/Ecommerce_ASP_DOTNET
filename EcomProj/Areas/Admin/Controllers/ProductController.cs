@@ -129,7 +129,7 @@ namespace EcomProj.Controllers
         public IActionResult Delete(int? id)
         {
 
-            var obj = _db.Products.FirstOrDefault(u => u.Id == id);
+            var obj = _unitOfWork.Product.GetFirstorDefault(u => u.Id == id);
             if (obj == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
@@ -139,8 +139,8 @@ namespace EcomProj.Controllers
             {
                 System.IO.File.Delete(oldImagePath);
             }
-            _db.Products.Remove(obj);    //
-            _db.SaveChanges();         //
+            _unitOfWork.Product.Remove(obj);    //
+            _unitOfWork.Save();         //
             return Json(new { success = true, message = "Successfully  deleted" });
 
         }
